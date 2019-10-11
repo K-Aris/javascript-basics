@@ -336,8 +336,394 @@ app.innerHTML = '<h1>JavaScript Basics</h1>';
 
 // ---------------- Function Closures and Scope
 
-function makeCarPart(id) {
-    console.log(id); 
+
+// //scope 1
+// const someID = 99;
+
+// function makeCarPart(id) {
+//     /// scope 2
+//     // const someID = 99;
+//     function anotherFunction() {
+//         //scope 3
+//         // const someID = 99; 
+//         console.log(someID); 
+//     } 
+// }
+
+// makeCarPart("zxzxv");
+
+// CLOSURE!!!!!
+
+// function makeCarPartID(id) {
+//     const theID = `CAR_PART_${id}`; 
+//     return function(name) {
+//         return `${theID}_${name.toUpperCase()}`; 
+//     }; 
+// }
+
+// const carPartID = makeCarPartID("12345abcd"); 
+// console.log(carPartID("Left Door")); 
+// console.log(carPartID("Right Door"));
+
+
+// Arrow version 
+
+// function makeCarPartID(id) {
+//     const theID = `CAR_PART_${id}`;
+//     return name => `${theID}_${name.toUpperCase()}`;
+// }
+
+// const carPartID = makeCarPartID("12345abcd");
+// console.log(carPartID("Left Door"));
+// console.log(carPartID("Right Door"));
+
+
+// --------IIFE
+
+// const carPartID = (function(id) {
+//     const theID = `Car_Part_${id}`;  
+//     return function (name) {
+//         return `${theID}_${name}`; 
+//     }; 
+// })("32423415");
+
+// console.log(carPartID("Left Door")); 
+
+// -------------Function & Callbacks
+
+// function carPartID(name, fn) {
+//     const theID = `Car_Part_12324`; 
+//     return  fn(`${theID}_${name}`); 
+// }
+
+// const carPart = carPartID("Left Door", function(id) {
+//     return(id); 
+// });
+
+// console.log(carPart); 
+
+
+// ----------------This
+
+// const firstCar = { id: "123456"}; 
+// const secondCar = { id: "asfdsgdafg"}; 
+// const thirdCar = { id: "zxcv"}; 
+
+
+// function carPartID(name, quantity) {
+//     console.log(`${this.id}_${name}_${quantity}`); 
+// }
+
+// const boundThirdCar = carPartID.bind(thirdCar); 
+// boundThirdCar("windscreen", 99); 
+
+// // call = c = commas
+// carPartID.call(firstCar, "Left Door", 12); 
+
+// // apply = a = array
+// carPartID.apply(secondCar, ["Right Door", 12]);
+
+
+// ------ Object Literal 
+
+// const drink = {
+//     id: "213werw", 
+//     name: "Pepsi",
+//     price: 1.50, 
+// };
+
+// console.log(drink); 
+
+// const drinkReference = drink;
+// drinkReference.name = "Coke"; 
+
+// console.log(drink); 
+
+
+// console.log(new Object());
+// console.log(Object);  
+// console.log ({} instanceof Object); 
+
+
+// ----- Properties, Methods and Values
+
+// const drink = {
+//     id: "12321kl",
+//     name: "Coke",
+//     price: 99, 
+//     getDrinkDetails() {
+//         return `Drink ${this.name} (${this.price})`;
+//     },
+//     "newKey": "I need help", //if key comes after method add quotes
+//     100: "will it code",  
+// }; 
+
+// console.log(drink.getDrinkDetails());
+
+// console.log(drink.newKey);
+
+// console.log(drink[100]); // numbers keys need to be put in [] if after method. 
+
+
+// console.log(drink); 
+
+// const myId = 'id';
+// console.log(drink[myId]); 
+
+
+// ----------------- Shorthand Properties 
+
+// const myId = "werewt"; 
+// const myName = "coke"; 
+// const myPrice = 99; 
+
+// // const drink = {
+// //     id: myId,
+// //     name: myName,
+// //     price: myPrice,
+// // };
+
+// const drink = {
+//     myId,
+//     myName,
+//     myPrice, 
+// }; 
+
+// console.log(drink); 
+
+
+// Destructuring Object Properties
+
+
+// const drink = {
+//     id: "sdfasfd",
+//     name: "Coke", 
+//     price: {
+//         sale: 99,
+//         full: 129,
+//     },
+// }; 
+
+// const {id, name, price: { full }} = drink; 
+
+// console.log(id, name, full); 
+
+
+// --------------------Property and Value Existence Checking
+
+// const drink = {
+//     id: "sdfasfd",
+//     name: "Coke",
+//     price: {
+//         sale: 99,
+//         full: 129,
+//     },
+// };
+
+// if (drink.id) {
+//     console.log(drink.id); 
+// }
+
+// for (const prop in drink) {
+//     if (drink[prop] === "Coke") {
+//     console.log(drink[prop]);
+//     } 
+// }
+
+// class Grandpa {
+//     constructor(attrsG) {
+//         this.name = attrsG.name;
+//         this.eyes = attrsG.eyes;
+//         this.hair = attrsG.hair;
+//     }
+//     speak() {
+//         console.log(`I have ${this.eyes} eyes`)
+//     }
+// }
+
+// class Parent extends Grandpa {
+//     constructor(attrsP) {
+//         super(attrsP)
+//     }
+//     speak() {
+//         console.log(`I have ${this.eyes} eyes`); 
+//     }
+// }
+
+// class Child extends Parent {
+//     constructor(attrsC) {
+//         super(attrsC)
+//     }
+//     speak() {
+//         console.log(`I have ${this.eyes} eyes`); 
+//     }
+// }
+
+
+// const me = new Child({
+//     name: "Ken",
+//     eyes: "brown",
+//     hair: "black",
+// });
+
+// console.log(me);
+// console.log(me.speak());
+
+
+
+// class Building {
+//     constructor(isOnFire) {
+//         this.place = isOnFire.place; 
+//     }
+//     dial() {
+//         console.log("Call the fire dept!!!!"); 
+//     }
+// }
+
+// class Apt extends Building {
+//     constructor(notOnFireYet) {
+//         super(notOnFireYet); 
+//     }
+// }
+
+// const help = new Apt ({
+//     place: "Is my building on Fire?",
+// }); 
+
+// console.log(help.place); 
+// console.log(help.dial()); 
+
+
+
+// ------------------------ Adding and Updating Obkect Properties
+
+// const drink = {
+//     id: "lksjfd",
+//     name: "Coke",
+//     price: {
+//         sale: 99,
+//         full: 129,
+//     },
+// }; 
+
+// // drink.brand = "My Drink Co"; 
+// // drink.name = "Pepsi";
+
+// function proUpdate(prop, newShit) {
+//     drink[prop] = newShit; 
+// }
+
+
+// proUpdate("brand", "My Dink Co"); 
+// proUpdate("name", "Brown"); 
+
+// console.log(drink); 
+
+
+// ------------------- Shallow and deep Object Cloning
+
+// const drink = {
+//     id: "lksjfd",
+//     name: "Coke",
+//     price: {
+//         sale: 99,
+//         full: 129,
+//     },
+// };
+
+// // --Shallow Copies
+// // const drinkClone = Object.assign({}, drink); 
+// // const drinkClone = {...drink}; 
+
+// // --Deep Clone
+
+// const drinkStingified = JSON.stringify(drink); // turn object into string
+// const drinkClone = JSON.parse(drinkStingified); // convert sting back into string
+// drinkClone.id = "zxc"; 
+// drinkClone.price.sale = 79; 
+
+// console.log(drink); 
+// console.log(drinkClone); 
+
+
+
+// ----------------- Merging Objects
+
+// const drink = {
+//     id: "lksjfd",
+//     name: "Coke",
+    
+// };
+
+// const price = {
+//     sale: 99,
+//     full: 129,
+// }; 
+
+// //const mergedDrink = Object.assign({}, drink, {price}); // new object // drink merged with scoped price
+// const mergedDrink = {...drink, ...{price}}; // shorter way to merge 
+
+// console.log(drink, price); 
+// console.log(mergedDrink); 
+
+
+// ---------------- Correctly Type-Checking Objects
+
+// const drink = {
+//     id: "lksjfd",
+//     name: "Coke",
+//     price: {
+//         sale: 99,
+//         full: 129,
+//     },
+// };
+
+// console.log(drink); 
+
+// console.log({} instanceof Array); // not accurate 
+
+// console.log(Object.prototype.toString.call([])); // very accurate way to typecheck 
+
+// function getType(obj) {
+//     return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase(); // function that tells you what type. Slice cuts out the fluff text
+// }
+
+// console.log(getType("stuff")); 
+
+
+
+// ------------------Imperative Object Iteration 
+// No gurantee on the order in which items get looped
+
+const drink = {
+    id: "lksjfd",
+    name: "Coke",
+    price: {
+        sale: 99,
+        full: 129,
+    },
+};
+
+const drinkWithId = drink; 
+
+// for (const prop in drink) {  //prop can be anyword but it for the property 
+//     //if (typeof drink[prop] !== "string") // not as acturate
+//     if (Object.prototype.toString.call(drink[prop]) === "[object Object]") {  //more accurate 
+//         for (const key in drink[prop]) {
+//             console.log(key); 
+//         }
+//     }
+// }
+
+for (const prop in drink) { //prop can be anyword but it for the property 
+    const value = drink[prop]; // store drink[prop] in object makes this faster
+    if (Object.prototype.toString.call(value) === "[object Object]") { //more accurate 
+        for (const key in value) {
+            console.log(key);
+        }
+    }
 }
 
-makeCarPart("zxzxv"); 
+
+// ----------------- Declaritive Object Iteration 
+

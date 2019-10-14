@@ -1,5 +1,6 @@
 import '../assets/css/style.css';
 
+
 const app = document.getElementById('app');
 app.innerHTML = '<h1>JavaScript Basics</h1>';
 
@@ -652,7 +653,7 @@ app.innerHTML = '<h1>JavaScript Basics</h1>';
 // const drink = {
 //     id: "lksjfd",
 //     name: "Coke",
-    
+
 // };
 
 // const price = {
@@ -695,16 +696,16 @@ app.innerHTML = '<h1>JavaScript Basics</h1>';
 // ------------------Imperative Object Iteration 
 // No gurantee on the order in which items get looped
 
-const drink = {
-    id: "lksjfd",
-    name: "Coke",
-    price: {
-        sale: 99,
-        full: 129,
-    },
-};
+// const drink = {
+//     id: "lksjfd",
+//     name: "Coke",
+//     price: {
+//         sale: 99,
+//         full: 129,
+//     },
+// };
 
-const drinkWithId = drink; 
+// const drinkWithId = drink; 
 
 // for (const prop in drink) {  //prop can be anyword but it for the property 
 //     //if (typeof drink[prop] !== "string") // not as acturate
@@ -715,15 +716,69 @@ const drinkWithId = drink;
 //     }
 // }
 
-for (const prop in drink) { //prop can be anyword but it for the property 
-    const value = drink[prop]; // store drink[prop] in object makes this faster
-    if (Object.prototype.toString.call(value) === "[object Object]") { //more accurate 
-        for (const key in value) {
-            console.log(key);
-        }
-    }
-}
+// for (const prop in drink) { //prop can be anyword but it for the property 
+//     const value = drink[prop]; // store drink[prop] in object makes this faster
+//     if (Object.prototype.toString.call(value) === "[object Object]") { //more accurate 
+//         for (const key in value) {
+//             console.log(key);
+//         }
+//     }
+// }
 
 
 // ----------------- Declaritive Object Iteration 
 
+
+
+
+// ---------------Array Loteral, function and constructor 
+
+// const drinks = ["Pepsi", "coke", "Dr.B"]; 
+// const drinkReference = drinks; 
+
+// console.log(drinks);
+// console.log(drinks === drinkReference); // Reference array is the same -  True
+// console.log([] === []); // This equals false.  No two arrays are the same unless one is a refrence arrawy see line above.  
+
+// console.log(new Array("z", "y", "z")); 
+// console.log(Array("a", "b", "c"));
+
+
+// -------------------- Properties, Index and Else 
+// Items inside an array are called an element
+
+// const drinks = ["Pepsi", "coke", "Dr.B"];
+
+// console.log(drinks[0]);
+// console.log(drinks[drinks.length - 1]); // access last element in array 
+
+// drinks.length = 0; // clears out the array; 
+// console.log(drinks); 
+
+// ---------------------- Multi-dimensional Arrays  [[]]
+
+// const drink = [["Pepsi", 99], ["coke", 12], ["Dr.B", 10000]];
+
+// const drinkOne = drink[0]; 
+// const drinkTwo = drink[1];
+// const drinkThree = drink[2];
+
+// console.log(drinkOne); 
+// console.log(drinkTwo);
+// console.log(drinkThree);
+// console.log(`Drink: ${drinkOne[0]}, Price: ${drinkOne[1]}`);
+
+// console.log(`Drink: ${drink[0][0]}, Price: ${drink[0][1]}`); // same as line above but does not require const drinkOne or anything like that
+
+
+// ------------------------ Destructuring Arrays
+
+const drinks = [
+  ["Pepsi", 99],
+  ["coke", 12],
+  ["Dr.B", 10000]
+];
+
+const [what, [a, b], ok] = drinks; // you can call the elements anything you want. Only the order matters
+
+console.log(what, a, b, ok);
